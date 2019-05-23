@@ -1,0 +1,24 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+    <hr/>
+    <h1>Clients <a href="/clients/csv">csv</a>-<a href="/clients/xlsx">xlsx</a>-<a>json</a>-<a>xml</a>-<a>pdf</a></h1>
+    <hr/>
+
+    {{>clients}}
+
+    <hr/>
+    <h1>Factures <a href="/factures/xlsx">xlsx</a></h1>
+    <hr/>
+
+
+    {{#factures}}
+
+        <h2>Facture numéro {{id}} de {{client.nom}} {{client.prenom}} <a href="/factures/{{id}}/pdf">pdf</a></h2>
+        {{>factures}}
+    {{/factures}}
+</body>
+</html>
