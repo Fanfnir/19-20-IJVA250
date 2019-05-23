@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Article;
 import com.example.demo.entity.Client;
+import com.example.demo.entity.Facture;
+import com.example.demo.entity.LigneFacture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -34,16 +37,24 @@ public class InitData implements ApplicationListener<ApplicationReadyEvent> {
 
         Client client3 = newClient("D\"oe", "Jo;hn", LocalDate.of(2000, 1, 3));
         em.persist(client3);
+        
+        Client client4 = newClient("Wick", "John", LocalDate.of(1990, 1, 3));
+        em.persist(client4);
 
-/*        Article a1 = new Article();
+        Article a1 = new Article();
         a1.setLibelle("Balayette");
         a1.setPrix(3.99);
         em.persist(a1);
 
         Article a2 = new Article();
-        a2.setLibelle("Style espion");
-        a2.setPrix(130);
+        a2.setLibelle("Stylot espion");
+        a2.setPrix(130d);
         em.persist(a2);
+        
+        Article a3 = new Article();
+        a3.setLibelle("m249");
+        a3.setPrix(200d);
+        em.persist(a3);
 
         Facture f1 = new Facture();
         f1.setClient(client1);
@@ -54,10 +65,16 @@ public class InitData implements ApplicationListener<ApplicationReadyEvent> {
         Facture f2 = new Facture();
         f2.setClient(client2);
         em.persist(f2);
-        em.persist(newLigneFacture(f2, a1, 10));*/
+        em.persist(newLigneFacture(f2, a1, 10));
+        
+        Facture f3 = new Facture();
+        f3.setClient(client4);
+        em.persist(f3);
+        em.persist(newLigneFacture(f3, a1, 10));
+        em.persist(newLigneFacture(f3, a3, 1));
     }
 
-    /*
+    
         private LigneFacture newLigneFacture(Facture f, Article a1, int quantite) {
             LigneFacture lf1 = new LigneFacture();
             lf1.setArticle(a1);
@@ -65,7 +82,7 @@ public class InitData implements ApplicationListener<ApplicationReadyEvent> {
             lf1.setFacture(f);
             return lf1;
         }
-        */
+        
 
     private Client newClient(String nom, String prenom, LocalDate dateNaissance) {
         Client client = new Client();
